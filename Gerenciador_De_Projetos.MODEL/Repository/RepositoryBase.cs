@@ -11,6 +11,17 @@ namespace Gerenciador_De_Projetos.MODEL.Repository
 {
     public class RepositoryBase<T> : IRepositoryBase<T>, IDisposable where T : class
     {
+        public Gerenciador_De_ProjetosContext _context;
+        public bool _saveChanges = true;
+
+        public RepositoryBase(Gerenciador_De_ProjetosContext context, bool saveChanges)
+        {
+            _context = context;
+            _saveChanges = saveChanges;
+        }
+
+
+
         public T Alterar(T obj)
         {
             throw new NotImplementedException();
