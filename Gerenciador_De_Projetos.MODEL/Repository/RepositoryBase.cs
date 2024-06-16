@@ -9,8 +9,71 @@ using Gerenciador_De_Projetos.MODEL.Interfaces;
 
 namespace Gerenciador_De_Projetos.MODEL.Repository
 {
-    public class RepositoryBase
+    public class RepositoryBase<T> : IRepositoryBase<T>, IDisposable where T : class
     {
+        public T Alterar(T obj)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<T> AlterarAsync(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Excluir(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Excluir(params object[] var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ExcluirAsync(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ExcluirAsync(params object[] var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Incluir(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> IncluirAsync(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T SelecionarChave(params object[] var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> SelecionarChaveAsync(params object[] var)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> SelecionarTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> SelecionarTodosAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
