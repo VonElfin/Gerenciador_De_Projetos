@@ -1,0 +1,70 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "Gerenciador_De_ProjetosContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Gerenciador_De_Projetos.MODEL",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[ENDERECO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EQUIPE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MEMBRO_EQUIPE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MEMBROS]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PROJETO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TAREFA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TIPO_PROJETO]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "pc_marco_ryan\\sqlexpress.Gerenciador_De_Projetos.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
