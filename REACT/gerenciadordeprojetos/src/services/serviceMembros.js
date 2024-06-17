@@ -5,5 +5,5 @@ export async function GetMembros() {
 }
 
 export async function GetMembrosById(id){
-    return await Api.get(`/cliente/getcmembrosbyid/${id}`);
+    return await Api.get(`/Membros/GetMembrosById/${id}`);
 }
