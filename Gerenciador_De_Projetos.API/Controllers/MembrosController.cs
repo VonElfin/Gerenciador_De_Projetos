@@ -28,18 +28,18 @@ namespace Gerenciador_De_Projetos.API.Controllers
             return Ok(await _Service.oRepositoryMembros.SelecionarChaveAsync(id));
         }
 
-        [HttpPost("PostCliente")]
+        [HttpPost("PostMembros")]
         public async Task<IActionResult> Post(MembrosDTO membros)
         {
             await _Service.IncluirMembroDTO(membros);
-            return Ok("Cliente Cadastro com sucesso");
+            return Ok("Membro Cadastro com sucesso");
         }
 
-        [HttpPut("PutCliente")]
+        [HttpPut("PutMembros")]
         public async Task<IActionResult> Put(MembrosDTO membro)
         {
             await _Service.AlterarMembroDTO(membro);
-            return Ok("Cliente Cadastrado com sucesso");
+            return Ok("Membro Cadastrado com sucesso");
         }
     }
 }
