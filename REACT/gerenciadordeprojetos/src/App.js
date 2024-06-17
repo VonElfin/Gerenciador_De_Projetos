@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import { GetClientes } from "./services/serviceMembros";
+import { GetClientes } from "./services/serviceMembros.js";
 
 const App = () =>{
   useEffect(() => {
