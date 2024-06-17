@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_De_Projetos.MODEL.Repository
 {
-    public class RepositoryMembros : RepositoryBase<MEMBROS>
+    public class RepositoryEndereco : RepositoryBase<ENDERECO>
     {
-        public RepositoryMembros(Gerenciador_De_ProjetosContext context, bool saveChanges = true) : base(context, saveChanges)
+        public RepositoryEndereco(Gerenciador_De_ProjetosContext context, bool saveChanges = true) : base(context, saveChanges)
         {
         }
     }

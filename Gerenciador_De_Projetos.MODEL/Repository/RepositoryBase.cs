@@ -21,15 +21,24 @@ namespace Gerenciador_De_Projetos.MODEL.Repository
         }
 
 
-
         public T Alterar(T obj)
         {
-            throw new NotImplementedException();
+            _context.Entry<T>(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            if (_saveChanges)
+            {
+                _context.SaveChanges();
+            }
+            return obj;
         }
 
-        public Task<T> AlterarAsync(T obj)
+        public  async Task<T> AlterarAsync(T obj)
         {
-            throw new NotImplementedException();
+            _context.Entry<T>(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            if (_saveChanges)
+            {
+                await _context.SaveChangesAsync();
+            }
+            return obj;
         }
 
         public void Dispose()
@@ -39,52 +48,72 @@ namespace Gerenciador_De_Projetos.MODEL.Repository
 
         public void Excluir(T obj)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(obj);
+            if (_saveChanges)
+            {
+                _context.SaveChanges();
+            }
         }
 
         public void Excluir(params object[] var)
         {
-            throw new NotImplementedException();
+            var obj = _context.Set<T>().Find(var);
+            Excluir(obj!);
         }
 
-        public Task ExcluirAsync(T obj)
+        public async Task ExcluirAsync(T obj)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(obj);
+            if (_saveChanges)
+            {
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task ExcluirAsync(params object[] var)
+        public async Task ExcluirAsync(params object[] var)
         {
-            throw new NotImplementedException();
+            var obj = await _context.Set<T>().FindAsync(var);
+            await ExcluirAsync(obj!);
         }
 
         public T Incluir(T obj)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(obj);
+            if (_saveChanges)
+            {
+                _context.SaveChanges();
+            }
+            return obj;
         }
 
-        public Task<T> IncluirAsync(T obj)
+        public async Task<T> IncluirAsync(T obj)
         {
-            throw new NotImplementedException();
+            await _context.Set<T>().AddAsync(obj);
+            if (_saveChanges)
+            {
+                await _context.SaveChangesAsync();
+            }
+            return obj;
         }
 
         public T SelecionarChave(params object[] var)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(var)!;
         }
 
-        public Task<T> SelecionarChaveAsync(params object[] var)
+        public async Task<T> SelecionarChaveAsync(params object[] var)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(var);
         }
 
         public List<T> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().ToList();
         }
 
-        public Task<List<T>> SelecionarTodosAsync()
+        public async Task<List<T>> SelecionarTodosAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().ToListAsync();
         }
     }
 }
