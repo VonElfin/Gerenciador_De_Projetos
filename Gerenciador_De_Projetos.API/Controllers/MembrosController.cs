@@ -29,9 +29,9 @@ namespace Gerenciador_De_Projetos.API.Controllers
         }
 
         [HttpPost("PostMembros")]
-        public async Task<IActionResult> Post(MembrosDTO membros)
+        public async Task<IActionResult> Post(MembrosDTO membrosDTO)
         {
-            await _Service.IncluirMembroDTO(membros);
+            await _Service.IncluirMembroDTO(membrosDTO);
             return Ok("Membro Cadastro com sucesso");
         }
 
