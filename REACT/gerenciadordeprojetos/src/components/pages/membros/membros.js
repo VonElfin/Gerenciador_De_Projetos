@@ -5,9 +5,10 @@ const Membros = () => {
 
 const [listaMembros, setListaMembros] = useState([]);
 
-useEffect(() => {
-    GetMembros().then(res => {console.log('res',res.data)})
-},[])
+    useEffect(() => {
+        // GetMembros().then(res => {console.log('res',res.data)})
+        GetMembros().then(res => setListaMembros(res.data));
+    },[])
     return (
         <>
         <div>
@@ -26,6 +27,21 @@ useEffect(() => {
                         </tr>
                     </thead>
                 </table>
+                <tbody>
+                    {listaMembros && listaMembros?.map(membros => {
+                        console.log('item',membros);
+                        return(
+                            <tr>
+                                <td>
+                                    {membros.memNome}
+                                </td>
+                                <td>
+                                    {membros.memCPF}
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
             </div>
         </>
     );

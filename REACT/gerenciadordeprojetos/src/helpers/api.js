@@ -11,13 +11,13 @@ const Api = axios.create({
     baseURL: "http://localhost:5062/api"
 })
 
-Api.interceptors.response.use(
-    (res) => {
-        console.log('Ok')
+// Api.interceptors.response.use(
+//     (res) => {
+//         console.log('Ok')
 
-        return res;
-    },
-    (err) => err
-)
+//         return res;
+//     },
+//     (err) => err
+// )
 
 export default Api;

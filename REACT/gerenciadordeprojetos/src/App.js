@@ -1,11 +1,8 @@
-import React,{useState, useEffect} from "react";
-import { GetMembros } from "./services/serviceMembros";
+import React from "react";
 import Membros from "./components/pages/membros/membros";
 
 const App = () =>{
-  useEffect(() => {
-    GetMembros().then(res => {console.log(res.data)})
-  },[])
+  
   
   return (
     <>
