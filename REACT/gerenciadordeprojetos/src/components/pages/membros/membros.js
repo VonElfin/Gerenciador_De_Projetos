@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { GetMembros, PostMembros } from "../../../services/serviceMembros";
 import '../membros/membros.css';
+import Table from "../../commons/table/table";
 
 const Membros = () => {
 
@@ -71,7 +72,7 @@ const Membros = () => {
             </div>
 
                 <div>
-                    <table className="table table-stripped">
+                    {/* <table className="table table-stripped">
                         <thead>
                             <tr>
                                 <th>
@@ -98,7 +99,9 @@ const Membros = () => {
                                 )
                             })}
                         </tbody>
-                    </table>
+                    </table> */}
+                    <Table dados={listaMembros}></Table>
+
                 </div>
         </div>
     );
