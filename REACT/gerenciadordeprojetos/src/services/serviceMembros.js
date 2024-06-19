@@ -10,3 +10,11 @@ export async function GetMembrosById(id){
  export async function PostMembros(membros){
     return await Api.post("/Membros/PostMembros", membros);
  }
+
+ export async function PutMembros(membros){
+    return await Api.put("/Membros/PutMembros", membros);
+ }
+
+ export async function DeleteMembro(id){
+    return await Api.delete(`/Membros/DeleteMembro/${id}`)
+ }

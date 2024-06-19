@@ -28,6 +28,7 @@ namespace Gerenciador_De_Projetos.MODEL.Services
         {
             var membro = new MEMBROS()
             {
+                MemCodigo = membroDTO.memCodigo,
                 MemCPF = membroDTO.memCPF,
                 MemDataNascimento = membroDTO.memDataNascimento,
                 MemEmail = membroDTO.memEmail,

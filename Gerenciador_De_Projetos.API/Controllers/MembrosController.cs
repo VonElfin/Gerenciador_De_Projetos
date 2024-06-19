@@ -41,5 +41,20 @@ namespace Gerenciador_De_Projetos.API.Controllers
             await _Service.AlterarMembroDTO(membro);
             return Ok("Membro Cadastrado com sucesso");
         }
+
+        [HttpDelete("DeleteMembro/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _Service.oRepositoryMembros.ExcluirAsync(id);
+                return Ok("Membro excluido com sucesso");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
     }
 }
