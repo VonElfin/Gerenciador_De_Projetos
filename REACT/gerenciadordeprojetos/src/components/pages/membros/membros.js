@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import { DeleteMembro, GetMembros, PostMembros, PutMembros } from "../../../services/serviceMembros";
 import '../membros/membros.css';
 import Table from "../../commons/table/table";
-import { useAppState } from "../../../context/storeContextProvider";
 
 const Membros = () => {
     const [alterar, setAlterar] = useState(false);
