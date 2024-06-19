@@ -9,7 +9,9 @@ public partial class TIPO_PROJETO
 {
     public int TpPCodigo { get; set; }
 
+    public int TpPCodigoProjeto { get; set; }
+
     public string TpPDescricao { get; set; }
 
-    public virtual ICollection<PROJETO> PROJETO { get; set; } = new List<PROJETO>();
+    public virtual PROJETO TpPCodigoProjetoNavigation { get; set; }
 }

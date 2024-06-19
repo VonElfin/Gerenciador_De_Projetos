@@ -9,8 +9,6 @@ public partial class MEMBROS
 {
     public int MemCodigo { get; set; }
 
-    public int EndCodigo { get; set; }
-
     public string MemNome { get; set; }
 
     public string MemSexo { get; set; }
@@ -23,7 +21,7 @@ public partial class MEMBROS
 
     public DateTime MemDataNascimento { get; set; }
 
-    public virtual ENDERECO EndCodigoNavigation { get; set; }
+    public virtual ICollection<ENDERECO> ENDERECO { get; set; } = new List<ENDERECO>();
 
     public virtual ICollection<MEMBRO_EQUIPE> MEMBRO_EQUIPE { get; set; } = new List<MEMBRO_EQUIPE>();
 }

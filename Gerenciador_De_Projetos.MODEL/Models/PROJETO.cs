@@ -7,15 +7,9 @@ namespace Gerenciador_De_Projetos.MODEL.Models;
 
 public partial class PROJETO
 {
-    public int ProjCodigo { get; set; }
+    public int ProCodigo { get; set; }
 
-    public int TpPCodigo { get; set; }
-
-    public int TarCodigo { get; set; }
-
-    public int EqpCodigo { get; set; }
-
-    public string ProjNome { get; set; }
+    public string ProNome { get; set; }
 
     public bool ProStatus { get; set; }
 
@@ -23,9 +17,9 @@ public partial class PROJETO
 
     public DateTime? ProDataFinal { get; set; }
 
-    public virtual EQUIPE EqpCodigoNavigation { get; set; }
+    public virtual ICollection<EQUIPE> EQUIPE { get; set; } = new List<EQUIPE>();
 
-    public virtual TAREFA TarCodigoNavigation { get; set; }
+    public virtual ICollection<TAREFA> TAREFA { get; set; } = new List<TAREFA>();
 
-    public virtual TIPO_PROJETO TpPCodigoNavigation { get; set; }
+    public virtual ICollection<TIPO_PROJETO> TIPO_PROJETO { get; set; } = new List<TIPO_PROJETO>();
 }

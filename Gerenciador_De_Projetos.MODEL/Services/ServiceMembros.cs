@@ -80,7 +80,7 @@ namespace Gerenciador_De_Projetos.MODEL.Services
                 EndUF = membrosVM.UF
             };
 
-            membro.EndCodigoNavigation = endereco;
+            //membro.EndCodigoNavigation = endereco;
 
             await oRepositoryMembros.IncluirAsync(membro);
 

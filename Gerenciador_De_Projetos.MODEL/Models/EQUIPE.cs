@@ -9,6 +9,8 @@ public partial class EQUIPE
 {
     public int EqpCodigo { get; set; }
 
+    public int EqpCodigoProjeto { get; set; }
+
     public string EqpNome { get; set; }
 
     public bool EqpStatus { get; set; }
@@ -17,7 +19,7 @@ public partial class EQUIPE
 
     public DateTime? EqpDataFinal { get; set; }
 
-    public virtual ICollection<MEMBRO_EQUIPE> MEMBRO_EQUIPE { get; set; } = new List<MEMBRO_EQUIPE>();
+    public virtual PROJETO EqpCodigoProjetoNavigation { get; set; }
 
-    public virtual ICollection<PROJETO> PROJETO { get; set; } = new List<PROJETO>();
+    public virtual ICollection<MEMBRO_EQUIPE> MEMBRO_EQUIPE { get; set; } = new List<MEMBRO_EQUIPE>();
 }

@@ -33,13 +33,15 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=PC_MARCO_RYAN\\SQLEXPRESS;Initial Catalog=Gerenciador_De_Projetos;Integrated Security=True;Encrypt=True; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=PC_MARCO_RYAN\\SQLEXPRESS;Initial Catalog=Gerenciador_De_Projetos;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ENDERECO>(entity =>
         {
-            entity.HasKey(e => e.EndCodigo).HasName("PK__ENDERECO__4EB6A165BE45F3E0");
+            entity.HasKey(e => e.EndCodigo).HasName("PK__ENDERECO__4EB6A165DB45077C");
+
+            entity.HasIndex(e => e.EndCodigoMembro, "ENDERECO_FKIndex1");
 
             entity.Property(e => e.EndBairro)
                 .IsRequired()
@@ -62,19 +64,23 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.EndPais)
                 .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .IsFixedLength();
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.EndUF)
                 .IsRequired()
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .IsFixedLength();
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.EndCodigoMembroNavigation).WithMany(p => p.ENDERECO)
+                .HasForeignKey(d => d.EndCodigoMembro)
+                .HasConstraintName("FK__ENDERECO__EndCod__3A81B327");
         });
 
         modelBuilder.Entity<EQUIPE>(entity =>
         {
-            entity.HasKey(e => e.EqpCodigo).HasName("PK__EQUIPE__0FD232B0ACB4F54D");
+            entity.HasKey(e => e.EqpCodigo).HasName("PK__EQUIPE__0FD232B08ABDE5AC");
+
+            entity.HasIndex(e => e.EqpCodigoProjeto, "EQUIPE_FKIndex1");
 
             entity.Property(e => e.EqpDataFinal).HasColumnType("datetime");
             entity.Property(e => e.EqpDataInicio).HasColumnType("datetime");
@@ -82,13 +88,15 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.EqpCodigoProjetoNavigation).WithMany(p => p.EQUIPE)
+                .HasForeignKey(d => d.EqpCodigoProjeto)
+                .HasConstraintName("FK__EQUIPE__EqpCodig__403A8C7D");
         });
 
         modelBuilder.Entity<MEMBROS>(entity =>
         {
-            entity.HasKey(e => e.MemCodigo).HasName("PK__MEMBROS__CF337F24D7AFDA0C");
-
-            entity.HasIndex(e => e.EndCodigo, "MEMBROS_FKIndex1");
+            entity.HasKey(e => e.MemCodigo).HasName("PK__MEMBROS__CF337F24DE2B3F2D");
 
             entity.Property(e => e.MemCPF)
                 .IsRequired()
@@ -105,21 +113,16 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.MemSexo)
                 .IsRequired()
-                .HasMaxLength(1)
-                .IsUnicode(false)
-                .IsFixedLength();
+                .HasMaxLength(10)
+                .IsUnicode(false);
             entity.Property(e => e.MemTelefone)
                 .HasMaxLength(14)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.EndCodigoNavigation).WithMany(p => p.MEMBROS)
-                .HasForeignKey(d => d.EndCodigo)
-                .HasConstraintName("FK__MEMBROS__EndCodi__3E52440B");
         });
 
         modelBuilder.Entity<MEMBRO_EQUIPE>(entity =>
         {
-            entity.HasKey(e => new { e.MeqCodigoMembro, e.MeqCodigoEquipe }).HasName("PK__MEMBRO_E__A9DE3AAFC4B406B4");
+            entity.HasKey(e => new { e.MeqCodigoMembro, e.MeqCodigoEquipe }).HasName("PK__MEMBRO_E__A9DE3AAFCF9F95F3");
 
             entity.HasIndex(e => e.MeqCodigoEquipe, "MEMBRO_EQUIPE_FKIndex1");
 
@@ -133,46 +136,28 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
 
             entity.HasOne(d => d.MeqCodigoEquipeNavigation).WithMany(p => p.MEMBRO_EQUIPE)
                 .HasForeignKey(d => d.MeqCodigoEquipe)
-                .HasConstraintName("FK__MEMBRO_EQ__MeqCo__412EB0B6");
+                .HasConstraintName("FK__MEMBRO_EQ__MeqCo__45F365D3");
 
             entity.HasOne(d => d.MeqCodigoMembroNavigation).WithMany(p => p.MEMBRO_EQUIPE)
                 .HasForeignKey(d => d.MeqCodigoMembro)
-                .HasConstraintName("FK__MEMBRO_EQ__MeqCo__4222D4EF");
+                .HasConstraintName("FK__MEMBRO_EQ__MeqCo__46E78A0C");
         });
 
         modelBuilder.Entity<PROJETO>(entity =>
         {
-            entity.HasKey(e => e.ProjCodigo).HasName("PK__PROJETO__77B7AA322FA41F73");
-
-            entity.HasIndex(e => e.TpPCodigo, "PROJETO_FKIndex1");
-
-            entity.HasIndex(e => e.TarCodigo, "PROJETO_FKIndex2");
-
-            entity.HasIndex(e => e.EqpCodigo, "PROJETO_FKIndex3");
+            entity.HasKey(e => e.ProCodigo).HasName("PK__PROJETO__90746C2261870A42");
 
             entity.Property(e => e.ProDataFinal).HasColumnType("datetime");
             entity.Property(e => e.ProDataInicio).HasColumnType("datetime");
-            entity.Property(e => e.ProjNome)
+            entity.Property(e => e.ProNome)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.EqpCodigoNavigation).WithMany(p => p.PROJETO)
-                .HasForeignKey(d => d.EqpCodigo)
-                .HasConstraintName("FK__PROJETO__EqpCodi__46E78A0C");
-
-            entity.HasOne(d => d.TarCodigoNavigation).WithMany(p => p.PROJETO)
-                .HasForeignKey(d => d.TarCodigo)
-                .HasConstraintName("FK__PROJETO__TarCodi__45F365D3");
-
-            entity.HasOne(d => d.TpPCodigoNavigation).WithMany(p => p.PROJETO)
-                .HasForeignKey(d => d.TpPCodigo)
-                .HasConstraintName("FK__PROJETO__TpPCodi__44FF419A");
         });
 
         modelBuilder.Entity<TAREFA>(entity =>
         {
-            entity.HasKey(e => e.TarCodigo).HasName("PK__TAREFA__B889E929BD5234C4");
+            entity.HasKey(e => e.TarCodigo).HasName("PK__TAREFA__B889E929B17CFD91");
 
             entity.Property(e => e.TarDataFinal).HasColumnType("datetime");
             entity.Property(e => e.TarDataInicio).HasColumnType("datetime");
@@ -184,16 +169,24 @@ public partial class Gerenciador_De_ProjetosContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.TarCodigoProjetoNavigation).WithMany(p => p.TAREFA)
+                .HasForeignKey(d => d.TarCodigoProjeto)
+                .HasConstraintName("FK__TAREFA__TarCodig__3D5E1FD2");
         });
 
         modelBuilder.Entity<TIPO_PROJETO>(entity =>
         {
-            entity.HasKey(e => e.TpPCodigo).HasName("PK__TIPO_PRO__A9B7F3258966B87B");
+            entity.HasKey(e => e.TpPCodigo).HasName("PK__TIPO_PRO__A9B7F325810A34AD");
 
             entity.Property(e => e.TpPDescricao)
                 .IsRequired()
                 .HasMaxLength(100)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.TpPCodigoProjetoNavigation).WithMany(p => p.TIPO_PROJETO)
+                .HasForeignKey(d => d.TpPCodigoProjeto)
+                .HasConstraintName("FK__TIPO_PROJ__TpPCo__4316F928");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -9,6 +9,8 @@ public partial class TAREFA
 {
     public int TarCodigo { get; set; }
 
+    public int TarCodigoProjeto { get; set; }
+
     public string TarNome { get; set; }
 
     public string TarDescricao { get; set; }
@@ -19,5 +21,5 @@ public partial class TAREFA
 
     public DateTime? TarDataFinal { get; set; }
 
-    public virtual ICollection<PROJETO> PROJETO { get; set; } = new List<PROJETO>();
+    public virtual PROJETO TarCodigoProjetoNavigation { get; set; }
 }

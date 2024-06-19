@@ -9,6 +9,8 @@ public partial class ENDERECO
 {
     public int EndCodigo { get; set; }
 
+    public int EndCodigoMembro { get; set; }
+
     public string EndCEP { get; set; }
 
     public string EndPais { get; set; }
@@ -25,5 +27,5 @@ public partial class ENDERECO
 
     public string EndComplemento { get; set; }
 
-    public virtual ICollection<MEMBROS> MEMBROS { get; set; } = new List<MEMBROS>();
+    public virtual MEMBROS EndCodigoMembroNavigation { get; set; }
 }
