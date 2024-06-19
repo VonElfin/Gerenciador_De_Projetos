@@ -12,6 +12,7 @@ const Projeto = () => {
     const [habilitar, setHabilitar] = useState(true);
 
     const columns = [
+        { name: 'Codigo', columnType: 'texto' },
         { name: 'Nome', columnType: 'texto' },
         { name: 'Status', columnType: 'texto' },
         { name: 'Data de Inicio', columnType: 'texto' },
@@ -20,6 +21,7 @@ const Projeto = () => {
     ];
 
     const dataSource = listaProjeto && listaProjeto.map(item => [
+        { name: item.proCodigo },
         { name: item.proNome },
         { name: item.proStatus ? "Ativo" : "Inativo" },
         { name: item.proDataInicio },
