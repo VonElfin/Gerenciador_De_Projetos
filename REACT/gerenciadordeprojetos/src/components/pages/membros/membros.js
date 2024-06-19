@@ -4,7 +4,8 @@ import '../membros/membros.css';
 import Table from "../../commons/table/table";
 
 const Membros = () => {
-
+    const [alterar, setAlterar] = useState(false);
+    const [textoBotao, setTextoBotao] = useState("Salvar");
     const [listaMembros, setListaMembros] = useState([]);
     const [membros, setMembros] = useState({});
 
@@ -14,7 +15,8 @@ const Membros = () => {
         {name: 'Sexo', columnType: 'texto'},
         {name: 'Email', columnType: 'texto'},
         {name: 'Telefone', columnType: 'texto'},
-        {name: 'Data de Nascimento', columnType: 'texto'}
+        {name: 'Data de Nascimento', columnType: 'texto'},
+        {name: 'Ação', columnType: 'botao'}
     ]
 
     const dataSource = listaMembros && listaMembros?.map(item => [
@@ -24,6 +26,11 @@ const Membros = () => {
         {name: item.memEmail},
         {name: item.memTelefone},
         {name: item.memDataNascimento},
+        {
+            botoes:[{
+                botao: <button onClick={() => CarregarMembros(item)} className="btn btn-sm btn-primary" type="button">Editar</button>
+            }]
+        }
     ])
 
     const handleChange = (event,value) => {
@@ -32,14 +39,26 @@ const Membros = () => {
     }
 
     const handleSalvar = () =>{
-        console.log("membro", membros);
         PostMembros(membros).then(res => {console.log(res.data)});
+    }
+
+    const CarregarMembros = (membros) =>{
+        setMembros(membros);
+        setAlterar(true);
     }
 
     useEffect(() => {
         // GetMembros().then(res => {console.log('res',res.data)})
         GetMembros().then(res => setListaMembros(res.data));
     },[])
+    useEffect(() => {
+        if (alterar){
+            setTextoBotao("Alterar");
+        }
+        else{
+            setTextoBotao("Salvar");
+        }
+    },[alterar])
     return (
         <div style={{marginLeft: "10px"}}>
             <div>
@@ -86,7 +105,7 @@ const Membros = () => {
                         </div>
                     </div>
                 </div>
-                <button onClick={handleSalvar} type="button" className="btn btn-success">Salvar</button>
+                <button onClick={handleSalvar} type="button" className="btn btn-success">{textoBotao}</button>
             </div>
 
                 <div>

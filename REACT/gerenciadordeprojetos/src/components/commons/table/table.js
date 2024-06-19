@@ -9,6 +9,13 @@ const Table = ({dados = [], columns = [], className = 'table table-stripped'}) =
             case("texto"):
                 return value.name;
                 break;
+            case ("botao"):
+                var botoes = []
+                value.botoes.map(item => {
+                    botoes.unshift(item.botao)
+                });
+                return botoes;
+                break;
         }
     }
 
