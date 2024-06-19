@@ -45,7 +45,7 @@ namespace Gerenciador_De_Projetos.API.Controllers
             return Ok("Tarefa cadastrado com sucesso");
         }
 
-        [HttpDelete("DeleteMembro/{id}")]
+        [HttpDelete("DeleteTarefa/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try

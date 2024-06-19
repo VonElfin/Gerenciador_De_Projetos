@@ -38,14 +38,14 @@ namespace Gerenciador_De_Projetos.API.Controllers
             return Ok("Membro Cadastrado com sucesso");
         }
 
-        [HttpPut("PutMembros")]
+        [HttpPut("PutProjeto")]
         public async Task<IActionResult> Put(ProjetoDTO projetoDTO)
         {
             await _Service.AlterarProjetoDTO(projetoDTO);
             return Ok("Membro altera com sucesso");
         }
 
-        [HttpDelete("DeleteMembro/{id}")]
+        [HttpDelete("DeleteProjeto/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
