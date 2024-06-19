@@ -9,7 +9,7 @@ namespace Gerenciador_De_Projetos.MODEL.Repository
 {
     public class RepositoryTarefa : RepositoryBase<TAREFA>
     {
-        public RepositoryTarefa(Gerenciador_De_ProjetosContext context, bool saveChanges) : base(context, saveChanges)
+        public RepositoryTarefa(Gerenciador_De_ProjetosContext context, bool saveChanges = true) : base(context, saveChanges)
         {
         }
     }

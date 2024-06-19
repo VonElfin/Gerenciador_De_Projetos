@@ -9,7 +9,7 @@ namespace Gerenciador_De_Projetos.MODEL.Repository
 {
     public class RepositoryProjeto : RepositoryBase<PROJETO>
     {
-        public RepositoryProjeto(Gerenciador_De_ProjetosContext context, bool saveChanges) : base(context, saveChanges)
+        public RepositoryProjeto(Gerenciador_De_ProjetosContext context, bool saveChanges = true) : base(context, saveChanges)
         {
         }
     }

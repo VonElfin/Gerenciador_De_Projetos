@@ -2,6 +2,7 @@
 using Gerenciador_De_Projetos.MODEL.Models;
 using Gerenciador_De_Projetos.MODEL.DTO;
 using Gerenciador_De_Projetos.MODEL.Services;
+using System;
 
 namespace Gerenciador_De_Projetos.API.Controllers
 {
@@ -29,17 +30,17 @@ namespace Gerenciador_De_Projetos.API.Controllers
         }
 
         [HttpPost("PostMembros")]
-        public async Task<IActionResult> Post(MembrosDTO membrosDTO)
+        public async Task<IActionResult> Post(MembrosDTO membro)
         {
-            await _Service.IncluirMembroDTO(membrosDTO);
-            return Ok("Membro Cadastro com sucesso");
+            await _Service.IncluirMembroDTO(membro);
+            return Ok("Membro cadastrado com sucesso");
         }
 
         [HttpPut("PutMembros")]
         public async Task<IActionResult> Put(MembrosDTO membro)
         {
             await _Service.AlterarMembroDTO(membro);
-            return Ok("Membro Cadastrado com sucesso");
+            return Ok("Membro alterado com sucesso");
         }
 
         [HttpDelete("DeleteMembro/{id}")]
