@@ -1,12 +1,12 @@
 import React from "react";
-import Membros from "./components/pages/membros/membros";
+import Home from "./components/pages/home/home"
 
 const App = () =>{
   
   
   return (
     <>
-      <Membros></Membros>
+      <Home></Home>
     </>
   )
 }
