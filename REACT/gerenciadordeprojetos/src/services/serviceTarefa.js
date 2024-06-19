@@ -4,10 +4,10 @@ export async function GetTarefa(){
     return await Api.get(`/Tarefa`)
 }
 
-export async function GetMembrosById(id){
+export async function GetTarefaById(id){
     return await Api.get(`/Tarefa/GetTarefaById/${id}`);
 }
- export async function PostMembros(tarefa){
+ export async function PostTarefa(tarefa){
     return await Api.post("/Tarefa/PostTarefa", tarefa);
  }
 

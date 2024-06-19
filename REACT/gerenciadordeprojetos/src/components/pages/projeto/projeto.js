@@ -51,7 +51,7 @@ const Projeto = () => {
         } else {
             PostProjeto(projeto).then(res => setSalvou(true));
             setProjeto({});
-        }
+        };
     };
 
     const NovoProjeto = () => {
@@ -80,7 +80,7 @@ const Projeto = () => {
     return (
         <div style={{ marginLeft: "10px" }}>
             <div>
-                <h2>Cadastro de Projeto</h2>
+                <h2>Cadastro de Projetos</h2>
             </div>
             <div>
                 <div style={{ display: "flex" }}>
