@@ -1,37 +1,39 @@
 import React from "react";
 
-const Table = ({dados = [], className = 'table table-stripped'}) => {
-return(
-    <>
-       <table className={className} id="tabela">
-            <thead>
-                <tr>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        CPF
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {dados && dados?.map(membros => {
-                    // console.log('item',membros);
-                    return(
-                        <tr key={membros.memNome}>
-                            <td key={"col_"+membros.memNome}>
-                                {membros.memNome}
-                            </td>
-                            <td key={"col_"+membros.memCPF}>
-                                {membros.memCPF}
-                            </td>
+const Table = ({dados = [], columns = [], className = 'table table-stripped'}) => {
+
+
+    console.log( 'dados',dados)
+    const CriarColunas = (columnType, value) => {
+        switch(columnType){
+            case("texto"):
+                return value.name;
+                break;
+        }
+    }
+
+    return(
+        <>
+           <table className={className} id="tabela">
+                <thead>
+                    <tr>
+                        {
+                            columns.map(column => <th key={column.name}>{column.name}</th> )
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    {dados.map((dado, index) => 
+                        <tr key={`linha-${index}`}>
+                            {columns.map((col,index) => <td>
+                                {dado[index] == null ? "" : CriarColunas(col.columnType, dado[index])}
+                            </td>)}
                         </tr>
-                    )
-                })}
-            </tbody>
-       </table>
-    </>
-)
+                    )}
+                </tbody>
+           </table>
+        </>
+    )
 
 }
 

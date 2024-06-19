@@ -8,6 +8,24 @@ const Membros = () => {
     const [listaMembros, setListaMembros] = useState([]);
     const [membros, setMembros] = useState({});
 
+    const columns = [
+        {name: 'Nome', columnType: 'texto'},
+        {name: 'CPF', columnType: 'texto'},
+        {name: 'Sexo', columnType: 'texto'},
+        {name: 'Email', columnType: 'texto'},
+        {name: 'Telefone', columnType: 'texto'},
+        {name: 'Data de Nascimento', columnType: 'texto'}
+    ]
+
+    const dataSource = listaMembros && listaMembros?.map(item => [
+        {name: item.memNome},
+        {name: item.memCPF},
+        {name: item.memSexo},
+        {name: item.memEmail},
+        {name: item.memTelefone},
+        {name: item.memDataNascimento},
+    ])
+
     const handleChange = (event,value) => {
         membros[event.target.id] = value;
         setMembros({...membros});
@@ -72,36 +90,7 @@ const Membros = () => {
             </div>
 
                 <div>
-                    {/* <table className="table table-stripped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    CPF
-                                </th>
-                            </tr>
-                        </thead>
-                    
-                        <tbody>
-                            {listaMembros && listaMembros?.map(membros => {
-                                // console.log('item',membros);
-                                return(
-                                    <tr key={membros.memNome}>
-                                        <td key={"col_"+membros.memNome}>
-                                            {membros.memNome}
-                                        </td>
-                                        <td key={"col_"+membros.memCPF}>
-                                            {membros.memCPF}
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table> */}
-                    <Table dados={listaMembros}></Table>
-
+                    <Table dados={dataSource} columns={columns}></Table>
                 </div>
         </div>
     );
